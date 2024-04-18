@@ -1,0 +1,16 @@
+services:
+  frontend:
+    build:
+      context: ./AngularClient
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./TrainingAPI
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
