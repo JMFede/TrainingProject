@@ -1,0 +1,11 @@
+.current-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px; /* Add padding for better readability */
+    color: black; /* Set text color to white for better contrast */
+  }
+  
+  .current-info div {
+    flex: 1; /* Each column occupies equal space */
+    padding: 0 10px; /* Add padding for better spacing */
+  }
