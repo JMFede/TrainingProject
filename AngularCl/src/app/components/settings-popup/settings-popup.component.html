@@ -1,0 +1,35 @@
+<h2 mat-dialog-title style="background-color: #123a74; color: white">Manage Planning</h2>
+<mat-divider></mat-divider>
+<div class="current-info" [style.background-color]="data.backgroundColor">
+    <div>
+      <p><u>Planned Date</u>: {{ data.currentDate }}</p>
+    </div>
+    <div>
+      <p><u>Line:</u> {{ data.currentLine }}</p>
+    </div>
+</div>
+<mat-dialog-content>
+  <mat-form-field style="width: 100%;">
+    <mat-label>{{data.currentDate}}</mat-label>
+    <input matInput [min]="minDate" [matDatepicker]="picker" #dateInput="ngModel" [(ngModel)]="data.newDate" name="newDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-hint>DD/MM/YYYY</mat-hint>
+  </mat-form-field>
+  <mat-form-field style="width: 100%;">
+    <mat-label>{{data.currentLine}}</mat-label>
+    <mat-select class="input-with-icon" [(ngModel)]="data.newLine" #lineInput [disabled]="!data.newDate">
+      <mat-option *ngFor="let option of data.lines" [value]="option">{{ option.lineName }}</mat-option>
+    </mat-select>
+    <mat-icon *ngIf="data.isLineAvailable(data.newLine.lineName, data.newDate)" class="check-icon" style="align-self: center;">check_circle</mat-icon>
+    <mat-icon *ngIf="!data.isLineAvailable(data.newLine.lineName, data.newDate)" class="cancel-icon" style="align-self: center;">cancel</mat-icon>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions style="justify-content: center;">
+  <button mat-flat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-flat-button color="#123a74" 
+          [style.background-color]="!data.isLineAvailable(data.newLine.lineName, data.newDate) ? 'whitesmoke' : '#123a74'"
+          style = "color: white"
+          [disabled]="!data.isLineAvailable(data.newLine.lineName, data.newDate)" 
+          (click)="onOkClick()" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

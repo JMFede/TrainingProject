@@ -1,0 +1,48 @@
+.container {
+  position: relative; /* Ensure positioning context for the rectangle */
+  display: flex;
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ensure the container takes up the full height of the viewport */
+}
+
+.rectangle {
+  position: absolute;
+  top: 50%; /* Position the rectangle vertically centered */
+  left: 50%; /* Position the rectangle horizontally centered */
+  transform: translate(-50%, -50%); /* Center the rectangle perfectly */
+  width: 400px; /* Set the width of the rectangle */
+  height: 300px; /* Set the height of the rectangle */
+  background-color: #123a74; /* Set the background color */
+  border-radius: 10%;
+  z-index: -1
+}
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ensure the container takes up the full height of the viewport */
+  }
+  
+  .login-form {
+    width: 300px; /* Adjust the width of the form as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    color: #ffffff;
+    margin-bottom: 50px; /* Add space between the heading and the form */
+  }
+
+  .login-button{
+    margin-right: 20px;
+    color: white; /* Set color for the add icon */
+    background-color: #123a74;
+    justify-content: space-around;
+  }
+  

@@ -1,0 +1,35 @@
+.input-with-icon {
+    position: relative;
+  }
+  
+  .mat-form-field-underline {
+    display: none; /* Hide the default underline */
+  }
+  
+  .mat-icon {
+    position: absolute;
+    align-self: center;
+    right: 15px; /* Adjust as needed */
+    transform: translateY(-40%);
+  }
+  
+  .check-icon {
+    color: green; /* Set color for the check icon */
+  }
+  
+  .cancel-icon {
+    color: red; /* Set color for the cancel icon */
+  }
+  .current-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px; /* Add padding for better readability */
+    color: black; /* Set text color to white for better contrast */
+  }
+  
+  .current-info div {
+    flex: 1; /* Each column occupies equal space */
+    padding: 0 10px; /* Add padding for better spacing */
+  }
+  
+  
