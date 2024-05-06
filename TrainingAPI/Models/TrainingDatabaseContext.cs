@@ -27,8 +27,7 @@ public partial class TrainingDatabaseContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=(localdb)\\MSSqlLocalDb;Database=TrainingDatabase;Trusted_Connection=True;TrustServerCertificate=True");
-
+        => optionsBuilder.UseSqlServer("Server=database;Database=TrainingDatabase;User Id=sa;Password=yourStrong(!)Password; TrustServerCertificate=True;");
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Line>(entity =>
@@ -42,6 +41,13 @@ public partial class TrainingDatabaseContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("lineName");
+            entity.HasData(
+                new Line() { LineId = 1, LineName = "Packing" },
+                new Line() { LineId = 2, LineName = "Machining" },
+                new Line() { LineId = 3, LineName = "Assembly" },
+                new Line() { LineId = 4, LineName = "Fabrication" },
+                new Line() { LineId = 5, LineName = "Production" }
+            );
         });
 
         modelBuilder.Entity<Order>(entity =>
@@ -93,6 +99,11 @@ public partial class TrainingDatabaseContext : DbContext
             entity.HasOne(d => d.User).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.UserId)
                 .HasConstraintName("FK__Orders__userId__5165187F");
+            entity.HasData(
+                new Order() { OrderId = 1, Name = "Order 1", TypeId = 1, Batch = "Batch 1", LineId = 1, StatusId = 3 },
+                new Order() { OrderId = 2, Name = "Order 2", TypeId = 2, Batch = "Batch 2", LineId = 2, StatusId = 3 },
+                new Order() { OrderId = 3, Name = "Order 3", TypeId = 3, Batch = "Batch 3", LineId = 3, StatusId = 3 }
+            );
         });
 
         modelBuilder.Entity<OrderStatus>(entity =>
@@ -108,6 +119,12 @@ public partial class TrainingDatabaseContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("statusName");
+            entity.HasData(
+                new OrderStatus() { StatusId = 1, StatusName = "Open" },
+                new OrderStatus() { StatusId = 2, StatusName = "Closed" },
+                new OrderStatus() { StatusId = 3, StatusName = "Planned" },
+                new OrderStatus() { StatusId = 4, StatusName = "Paused" }
+            );
         });
 
         modelBuilder.Entity<Type>(entity =>
@@ -121,6 +138,13 @@ public partial class TrainingDatabaseContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("typeName");
+            entity.HasData(
+                new Type() { TypeId = 1, TypeName = "PR001" },
+                new Type() { TypeId = 2, TypeName = "PR002" },
+                new Type() { TypeId = 3, TypeName = "PR003" },
+                new Type() { TypeId = 4, TypeName = "PR004" },
+                new Type() { TypeId = 5, TypeName = "PR005" }
+            );
         });
 
         modelBuilder.Entity<User>(entity =>
@@ -138,10 +162,18 @@ public partial class TrainingDatabaseContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("userName");
+            entity.HasData(
+                new User() { UserId = 1, UserName = "User1" },
+                new User() { UserId = 2, UserName = "User2" },
+                new User() { UserId = 3, UserName = "User3" }
+            );
         });
 
         OnModelCreatingPartial(modelBuilder);
+
     }
+
+
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

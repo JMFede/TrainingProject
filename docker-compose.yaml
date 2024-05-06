@@ -1,16 +1,25 @@
+version: '3.8'
 services:
   frontend:
-    build:
-      context: ./AngularClient
-      dockerfile: Dockerfile
+    build: ./AngularClient
     ports:
-      - "80:80"
+      - "4200:4200"
     depends_on:
       - backend
-
   backend:
-    build:
-      context: ./TrainingAPI
-      dockerfile: Dockerfile
+    build: ./TrainingAPI
     ports:
-      - "5000:5000"
+      - "8080:8080"
+    depends_on:
+      - database
+  database:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      SA_PASSWORD: "yourStrong(!)Password"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+    - sql-data:/var/opt/mssql
+volumes:
+  sql-data:
