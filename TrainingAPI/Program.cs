@@ -43,7 +43,7 @@ void CheckConnection()
     }
 }
 
-//CheckConnection();
+CheckConnection();
 
 builder.Services.AddControllers();
 builder.Services.AddDbContextFactory<TrainingDatabaseContext>(options =>
