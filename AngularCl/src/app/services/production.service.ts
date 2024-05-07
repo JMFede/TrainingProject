@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { Subject } from 'rxjs';
-import { environment } from '../environment/environment';
+import { environment } from '../../environment/environment';
 
 
 @Injectable({

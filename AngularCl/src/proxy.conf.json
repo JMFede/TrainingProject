@@ -2,9 +2,12 @@
     "/api": {
         "target": "http://backend:8080",
         "secure": false,
-        "pathRewrite": {
-            "^/api": ""
-        },
+        "changeOrigin": true
+    },
+    "/planthub": {
+        "target": "http://backend:8080",
+        "secure": false,
+        "ws":true,
         "changeOrigin": true
     }
   }

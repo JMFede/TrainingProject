@@ -20,7 +20,8 @@ namespace TrainingProject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK__Lines__32489DA535D4B69E", x => x.lineId);
-                });
+                }
+            );
 
             migrationBuilder.CreateTable(
                 name: "OrderStatus",
@@ -32,7 +33,8 @@ namespace TrainingProject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK__OrderSta__36257A18CCD15231", x => x.statusId);
-                });
+                }
+            );
 
             migrationBuilder.CreateTable(
                 name: "Types",
@@ -44,7 +46,8 @@ namespace TrainingProject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK__Types__F04DF13AE3DA98D7", x => x.typeId);
-                });
+                }
+            );
 
             migrationBuilder.CreateTable(
                 name: "Users",
@@ -57,7 +60,8 @@ namespace TrainingProject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK__Users__CB9A1CFF58412903", x => x.userId);
-                });
+                }
+            );
 
             migrationBuilder.CreateTable(
                 name: "Orders",
@@ -99,7 +103,9 @@ namespace TrainingProject.Migrations
                         column: x => x.userId,
                         principalTable: "Users",
                         principalColumn: "userId");
-                });
+                }
+            );
+
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_lineId",
@@ -120,6 +126,7 @@ namespace TrainingProject.Migrations
                 name: "IX_Orders_userId",
                 table: "Orders",
                 column: "userId");
+        
         }
 
         /// <inheritdoc />

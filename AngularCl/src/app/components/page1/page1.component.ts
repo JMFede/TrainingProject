@@ -25,6 +25,7 @@ import {interval, max } from 'rxjs';
 import { AddOrderComponent } from '../add-order/add-order.component';
 import { AuthService } from '../../auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { DeleteOrderComponent } from '../delete-order/delete-order.component';
 
 const today = new Date();
 const month = today.getMonth();
@@ -136,7 +137,7 @@ export class Page1Component implements OnInit, OnDestroy{
   getAllOrderData(){
       this.service.getAllOrderData().subscribe({
       next: (res:any) => {
-        console.log("From API: ",res);
+        //console.log("From API: ",res);
         this.orderData = res;
         this.orderData.map((x:any) => {
           if (x.plannedDate !== null) {
@@ -165,7 +166,7 @@ export class Page1Component implements OnInit, OnDestroy{
         });
         //console.log('orderObj', this.orderData);
         
-        console.log('Orders From API: ', this.orderData);
+        //console.log('Orders From API: ', this.orderData);
 
         this.dataSource.data = this.orderData;  
       },
@@ -177,7 +178,7 @@ export class Page1Component implements OnInit, OnDestroy{
       next: (res:any) => {
       this.lineData = res;
       this.lineData = this.lineData.filter((x:any) => x != null);
-      console.log('Lines From API: ', this.lineData);
+      //console.log('Lines From API: ', this.lineData);
     },
     error: (err:any) => {
       console.log(err);
@@ -187,7 +188,7 @@ export class Page1Component implements OnInit, OnDestroy{
       next: (res:any) => {
       this.typeData = res;
       this.typeData = this.typeData.filter((x:any) => x != null);
-      console.log('Types From API: ', this.typeData);
+      //console.log('Types From API: ', this.typeData);
     },
     error: (err:any) => {
       console.log(err);
@@ -197,7 +198,7 @@ export class Page1Component implements OnInit, OnDestroy{
       next: (res:any) => {
       this.userData = res;
       this.userData = this.userData.filter((x:any) => x != null);
-      console.log('Users From API: ', this.userData);
+      //console.log('Users From API: ', this.userData);
     },
     error: (err:any) => {
       console.log(err);
@@ -207,7 +208,7 @@ export class Page1Component implements OnInit, OnDestroy{
       next: (res:any) => {
       this.statusData = res;
       this.statusData = this.statusData.filter((x:any) => x != null);
-      console.log('Status From API: ', this.statusData);
+      //console.log('Status From API: ', this.statusData);
     },
     error: (err:any) => {
       console.log(err);
@@ -320,9 +321,7 @@ export class Page1Component implements OnInit, OnDestroy{
       users: this.userData,
       wbs: '',
       isLineAvailable: this.isLineAvailable.bind(this)
-    };
-    console.log('lines', dialogConfig.data.lines);
-  
+    };  
     const dialogRef = this.dialog.open(AddOrderComponent, dialogConfig);
   
     dialogRef.afterClosed().subscribe(data => {
@@ -366,7 +365,6 @@ export class Page1Component implements OnInit, OnDestroy{
     dialogConfig.height = '500px';
   
     // Pass current values of date and line along with variables for new values
-    console.log('lines', this.lineData);
     dialogConfig.data = {
       currentDate: element.plannedDate,
       currentLine: element.lineName,
@@ -426,6 +424,35 @@ export class Page1Component implements OnInit, OnDestroy{
     });
   }
 
+  deleteOrder(element: any): void{
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '500px';
+    dialogConfig.height = '200spx';
+  
+    // Pass current values of date and line along with variables for new values
+    dialogConfig.data = {
+      orderName: element.name,
+    };
+  
+    const dialogRef = this.dialog.open(DeleteOrderComponent, dialogConfig);
+  
+    dialogRef.afterClosed().subscribe(data => {
+      console.log('The dialog was closed');
+      if (data) {
+        this.service.deleteOrder(element.orderId).subscribe({
+          next: (res:any) => {
+          console.log("--> Order", element.orderId," deleted.",res);
+          this.getAllOrderData();
+        },
+        error: (err:any) => {
+          console.log(err);
+        }
+        })
+      }
+    });
+  }
+
   startProcess(element: any) {
     // Start the process
     if (element.statusName === 'Paused' || element.statusName === 'Planned') {
@@ -437,7 +464,7 @@ export class Page1Component implements OnInit, OnDestroy{
 
       this.service.addUser(newUser).subscribe({
         next: (res:any) => {
-        console.log(res, 'add user response from api');
+        //console.log(res, 'add user response from api');
         
         element.userId = res.userId
         element.userName = res.userName;
@@ -448,7 +475,7 @@ export class Page1Component implements OnInit, OnDestroy{
 
         this.service.updateOrderData(element).subscribe({
           next: (res:any) => {
-          console.log(res, 'update response from api');
+          //console.log(res, 'update response from api');
           this.service.getStatusData().subscribe({
             next: (res:any) => {
             this.statusData = res;
@@ -478,7 +505,7 @@ export class Page1Component implements OnInit, OnDestroy{
       element.statusName = 'Paused';
       this.service.updateOrderData(element).subscribe({
         next: (res:any) => {
-        console.log(res, 'update response from api');
+        //console.log(res, 'update response from api');
         this.service.getStatusData().subscribe({
           next: (res:any) => {
           this.statusData = res;

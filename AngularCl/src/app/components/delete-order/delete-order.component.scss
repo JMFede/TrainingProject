@@ -1,0 +1,48 @@
+/* Style for the entire popup container */
+.popup-container {
+    top: 20%;
+    left: 50%;
+    transform: translateX(+22%);
+    width: 300px;
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 20px;;
+}
+
+/* Style for the header section (title and image) */
+.header-section {
+    background-color: lightcoral; /* Same as the container background */
+    padding-bottom: 20px; /* Add some spacing at the bottom */
+}
+
+.title {
+    font-size: 24px;
+    color: white;
+    background-color: #ED1C24;
+    line-height: 1.2; /* Adjust line height for better spacing */
+}
+
+.warning-icon {
+    color: #ED1C24;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    margin-top: 20px; /* Slightly reduce the top margin */
+    margin-bottom: 20px; /* Slightly reduce the bottom margin */
+}
+
+/* Style for the content section (message text and buttons) */
+.content-section {
+    background-color: white; /* White background for the content */
+}
+
+.message-text {
+    font-size: 16px;
+    color: #333; /* Darker text color for better readability */
+}
+
+.button-container {
+    margin-top: 20px;
+}

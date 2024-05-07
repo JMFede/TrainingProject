@@ -27,7 +27,7 @@ public partial class TrainingDatabaseContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=database;Database=TrainingDatabase;User Id=sa;Password=yourStrong(!)Password; TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=localhost,1433;Database=TrainingDatabase;User Id=sa;Password=yourStrong(!)Password; TrustServerCertificate=True;");
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Line>(entity =>
@@ -82,7 +82,7 @@ public partial class TrainingDatabaseContext : DbContext
             entity.Property(e => e.Wbs)
                 .HasMaxLength(50)
                 .IsUnicode(false)
-                .HasColumnName("WBS");
+                .HasColumnName("Wbs");
 
             entity.HasOne(d => d.Line).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.LineId)
@@ -100,10 +100,22 @@ public partial class TrainingDatabaseContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .HasConstraintName("FK__Orders__userId__5165187F");
             entity.HasData(
-                new Order() { OrderId = 1, Name = "Order 1", TypeId = 1, Batch = "Batch 1", LineId = 1, StatusId = 3 },
-                new Order() { OrderId = 2, Name = "Order 2", TypeId = 2, Batch = "Batch 2", LineId = 2, StatusId = 3 },
-                new Order() { OrderId = 3, Name = "Order 3", TypeId = 3, Batch = "Batch 3", LineId = 3, StatusId = 3 }
-            );
+                new Order { OrderId = 1, Name = "Order 1", TypeId = 1, LineId = 1, Batch = "BATCH001", Quantity = 0, PlannedQuantity = 90, PlannedDate = "2024-04-10", UserId = null, Wbs = "WBS001", StartingDate = null, StatusId = 3 },
+                new Order { OrderId = 2, Name = "Order 2", TypeId = 2, LineId = 2, Batch = "BATCH002", Quantity = 0, PlannedQuantity = 140, PlannedDate = "2024-04-12", UserId = null, Wbs = "WBS002", StartingDate = null, StatusId = 3 },
+                new Order { OrderId = 3, Name = "Order 3", TypeId = 3, LineId = 3, Batch = "BATCH003", Quantity = 0, PlannedQuantity = 180, PlannedDate = "2024-04-15", UserId = null, Wbs = "WBS003", StartingDate = null, StatusId = 3 },
+                new Order { OrderId = 4, Name = "Order 4", TypeId = 4, LineId = 4, Batch = "BATCH004", Quantity = 0, PlannedQuantity = 110, PlannedDate = "2024-04-18", UserId = null, Wbs = "WBS004", StartingDate = null, StatusId = 3 },
+                new Order { OrderId = 5, Name = "Order 5", TypeId = 5, LineId = 1, Batch = "BATCH005", Quantity = 0, PlannedQuantity = 80, PlannedDate = "2024-04-20", UserId = null, Wbs = "WBS005", StartingDate = null, StatusId = 3 },
+                new Order { OrderId = 6, Name = "Order 6", TypeId = 1, LineId = 2, Batch = "BATCH006", Quantity = 0, PlannedQuantity = 170, PlannedDate = "2024-04-22", UserId = null, Wbs = "WBS006", StartingDate = null, StatusId = 3 },
+                new Order { OrderId = 7, Name = "Order 7", TypeId = 2, LineId = 3, Batch = "BATCH007", Quantity = 0, PlannedQuantity = 200, PlannedDate = "2024-04-25", UserId = null, Wbs = "WBS007", StartingDate = null, StatusId = 3 },
+                new Order { OrderId = 8, Name = "Order 8", TypeId = 3, LineId = 4, Batch = "BATCH008", Quantity = 0, PlannedQuantity = 120, PlannedDate = "2024-04-28", UserId = null, Wbs = "WBS008", StartingDate = null, StatusId = 3 },
+                new Order { OrderId = 9, Name = "Order 9", TypeId = 4, LineId = 5, Batch = "BATCH009", Quantity = 0, PlannedQuantity = 90, PlannedDate = "2024-05-01", UserId = null, Wbs = "WBS009", StartingDate = null, StatusId = 3 },
+                new Order { OrderId = 10, Name = "Order 10", TypeId = 5, LineId = 1, Batch = "BATCH010", Quantity = 0, PlannedQuantity = 140, PlannedDate = "2024-05-03", UserId = null, Wbs = "WBS010", StartingDate = null, StatusId = 3 },
+                new Order { OrderId = 11, Name = "Order 11", TypeId = 1, LineId = 2, Batch = "BATCH011", Quantity = 0, PlannedQuantity = 180, PlannedDate = "2024-05-06", UserId = null, Wbs = "WBS011", StartingDate = null, StatusId = 3 },
+                new Order { OrderId = 12, Name = "Order 12", TypeId = 2, LineId = 3, Batch = "BATCH012", Quantity = 0, PlannedQuantity = 100, PlannedDate = "2024-05-09", UserId = null, Wbs = "WBS012", StartingDate = null, StatusId = 3 },
+                new Order { OrderId = 13, Name = "Order 13", TypeId = 3, LineId = 4, Batch = "BATCH013", Quantity = 0, PlannedQuantity = 150, PlannedDate = "2024-05-12", UserId = null, Wbs = "WBS013", StartingDate = null, StatusId = 3 },
+                new Order { OrderId = 14, Name = "Order 14", TypeId = 4, LineId = 5, Batch = "BATCH014", Quantity = 0, PlannedQuantity = 180, PlannedDate = "2024-05-15", UserId = null, Wbs = "WBS014", StartingDate = null, StatusId = 3 },
+                new Order { OrderId = 15, Name = "Order 15", TypeId = 5, LineId = 1, Batch = "BATCH015", Quantity = 0, PlannedQuantity = 70, PlannedDate = "2024-05-18", UserId = null, Wbs = "WBS015", StartingDate = null, StatusId = 3 }
+           );
         });
 
         modelBuilder.Entity<OrderStatus>(entity =>

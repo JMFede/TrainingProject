@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrainingProject.Models;
 
@@ -11,9 +12,11 @@ using TrainingProject.Models;
 namespace TrainingProject.Migrations
 {
     [DbContext(typeof(TrainingDatabaseContext))]
-    partial class TrainingDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240507133146_InsertDefaultData")]
+    partial class InsertDefaultData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,7 +128,7 @@ namespace TrainingProject.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)")
-                        .HasColumnName("Wbs");
+                        .HasColumnName("WBS");
 
                     b.HasKey("OrderId")
                         .HasName("PK__Orders__0809335DECC5D2B3");
@@ -139,203 +142,6 @@ namespace TrainingProject.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
-
-                    b.HasData(
-                        new
-                        {
-                            OrderId = 1,
-                            Batch = "BATCH001",
-                            LineId = 1,
-                            Name = "Order 1",
-                            PlannedDate = "2024-04-10",
-                            PlannedQuantity = 90,
-                            Quantity = 0,
-                            StatusId = 3,
-                            TypeId = 1,
-                            Wbs = "WBS001"
-                        },
-                        new
-                        {
-                            OrderId = 2,
-                            Batch = "BATCH002",
-                            LineId = 2,
-                            Name = "Order 2",
-                            PlannedDate = "2024-04-12",
-                            PlannedQuantity = 140,
-                            Quantity = 0,
-                            StatusId = 3,
-                            TypeId = 2,
-                            Wbs = "WBS002"
-                        },
-                        new
-                        {
-                            OrderId = 3,
-                            Batch = "BATCH003",
-                            LineId = 3,
-                            Name = "Order 3",
-                            PlannedDate = "2024-04-15",
-                            PlannedQuantity = 180,
-                            Quantity = 0,
-                            StatusId = 3,
-                            TypeId = 3,
-                            Wbs = "WBS003"
-                        },
-                        new
-                        {
-                            OrderId = 4,
-                            Batch = "BATCH004",
-                            LineId = 4,
-                            Name = "Order 4",
-                            PlannedDate = "2024-04-18",
-                            PlannedQuantity = 110,
-                            Quantity = 0,
-                            StatusId = 3,
-                            TypeId = 4,
-                            Wbs = "WBS004"
-                        },
-                        new
-                        {
-                            OrderId = 5,
-                            Batch = "BATCH005",
-                            LineId = 1,
-                            Name = "Order 5",
-                            PlannedDate = "2024-04-20",
-                            PlannedQuantity = 80,
-                            Quantity = 0,
-                            StatusId = 3,
-                            TypeId = 5,
-                            Wbs = "WBS005"
-                        },
-                        new
-                        {
-                            OrderId = 6,
-                            Batch = "BATCH006",
-                            LineId = 2,
-                            Name = "Order 6",
-                            PlannedDate = "2024-04-22",
-                            PlannedQuantity = 170,
-                            Quantity = 0,
-                            StatusId = 3,
-                            TypeId = 1,
-                            Wbs = "WBS006"
-                        },
-                        new
-                        {
-                            OrderId = 7,
-                            Batch = "BATCH007",
-                            LineId = 3,
-                            Name = "Order 7",
-                            PlannedDate = "2024-04-25",
-                            PlannedQuantity = 200,
-                            Quantity = 0,
-                            StatusId = 3,
-                            TypeId = 2,
-                            Wbs = "WBS007"
-                        },
-                        new
-                        {
-                            OrderId = 8,
-                            Batch = "BATCH008",
-                            LineId = 4,
-                            Name = "Order 8",
-                            PlannedDate = "2024-04-28",
-                            PlannedQuantity = 120,
-                            Quantity = 0,
-                            StatusId = 3,
-                            TypeId = 3,
-                            Wbs = "WBS008"
-                        },
-                        new
-                        {
-                            OrderId = 9,
-                            Batch = "BATCH009",
-                            LineId = 5,
-                            Name = "Order 9",
-                            PlannedDate = "2024-05-01",
-                            PlannedQuantity = 90,
-                            Quantity = 0,
-                            StatusId = 3,
-                            TypeId = 4,
-                            Wbs = "WBS009"
-                        },
-                        new
-                        {
-                            OrderId = 10,
-                            Batch = "BATCH010",
-                            LineId = 1,
-                            Name = "Order 10",
-                            PlannedDate = "2024-05-03",
-                            PlannedQuantity = 140,
-                            Quantity = 0,
-                            StatusId = 3,
-                            TypeId = 5,
-                            Wbs = "WBS010"
-                        },
-                        new
-                        {
-                            OrderId = 11,
-                            Batch = "BATCH011",
-                            LineId = 2,
-                            Name = "Order 11",
-                            PlannedDate = "2024-05-06",
-                            PlannedQuantity = 180,
-                            Quantity = 0,
-                            StatusId = 3,
-                            TypeId = 1,
-                            Wbs = "WBS011"
-                        },
-                        new
-                        {
-                            OrderId = 12,
-                            Batch = "BATCH012",
-                            LineId = 3,
-                            Name = "Order 12",
-                            PlannedDate = "2024-05-09",
-                            PlannedQuantity = 100,
-                            Quantity = 0,
-                            StatusId = 3,
-                            TypeId = 2,
-                            Wbs = "WBS012"
-                        },
-                        new
-                        {
-                            OrderId = 13,
-                            Batch = "BATCH013",
-                            LineId = 4,
-                            Name = "Order 13",
-                            PlannedDate = "2024-05-12",
-                            PlannedQuantity = 150,
-                            Quantity = 0,
-                            StatusId = 3,
-                            TypeId = 3,
-                            Wbs = "WBS013"
-                        },
-                        new
-                        {
-                            OrderId = 14,
-                            Batch = "BATCH014",
-                            LineId = 5,
-                            Name = "Order 14",
-                            PlannedDate = "2024-05-15",
-                            PlannedQuantity = 180,
-                            Quantity = 0,
-                            StatusId = 3,
-                            TypeId = 4,
-                            Wbs = "WBS014"
-                        },
-                        new
-                        {
-                            OrderId = 15,
-                            Batch = "BATCH015",
-                            LineId = 1,
-                            Name = "Order 15",
-                            PlannedDate = "2024-05-18",
-                            PlannedQuantity = 70,
-                            Quantity = 0,
-                            StatusId = 3,
-                            TypeId = 5,
-                            Wbs = "WBS015"
-                        });
                 });
 
             modelBuilder.Entity("TrainingProject.Models.OrderStatus", b =>

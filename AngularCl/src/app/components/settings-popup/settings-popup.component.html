@@ -31,5 +31,5 @@
           [style.background-color]="!data.isLineAvailable(data.newLine.lineName, data.newDate) ? 'whitesmoke' : '#123a74'"
           style = "color: white"
           [disabled]="!data.isLineAvailable(data.newLine.lineName, data.newDate)" 
-          (click)="onOkClick()" cdkFocusInitial>Ok</button>
+          (click)="onOkClick()">Ok</button>
 </mat-dialog-actions>

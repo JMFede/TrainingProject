@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../environment/environment';
+import { environment } from '../../environment/environment';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 
@@ -43,5 +43,9 @@ export class ServiceService {
   updateOrderData(data: any): Observable<any>{
     const header = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.put(this.path + 'api/EditOrder', data, {headers: header});
+  }
+  deleteOrder(data: any): Observable<any>{
+    const header = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.delete(this.path + 'api/DeleteOrder?id=' + data, {headers: header});
   }
 }

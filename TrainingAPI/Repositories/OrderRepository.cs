@@ -131,6 +131,11 @@ namespace TrainingProject.Repositories
             using (var ctx = _databaseContextFactory.CreateDbContext())
             {
                 var order = await ctx.Orders.Where(x => x.OrderId == orderId).ExecuteDeleteAsync();
+
+                if (order == 0)
+                {
+                    return false;
+                }
                 return true;
             }
         }

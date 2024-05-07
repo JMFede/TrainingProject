@@ -63,7 +63,7 @@
       </div>
 
       <!-- Raise an error if !data.isLineAvailable(data.line.lineName, data.plannedDate)-->
-      <mat-error style="text-align: center;" *ngIf="!data.isLineAvailable(data.line.lineName, data.plannedDate)">Line is not available on this date</mat-error>
+      <mat-error style="text-align: center;" *ngIf="!data.isLineAvailable(data.line.lineName, data.plannedDate)">The selected line is not available on this date.</mat-error>
       
 </mat-dialog-content>
 <mat-dialog-actions style="justify-content: center;">

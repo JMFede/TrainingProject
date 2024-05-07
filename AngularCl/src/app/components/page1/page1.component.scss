@@ -7,9 +7,6 @@ table {
   overflow-y: auto;
 }
 
-th.mat-sort-header-sorted {
-  text-align: center;
-}
 mat-expansion-panel {
   width: 100%;
 }
@@ -28,6 +25,7 @@ mat-expansion-panel {
 .mat-menu-panel {
   max-height: 20px; /* Adjust the height as needed */
   width: 10px; /* Adjust the width as needed */
+  border-radius: 30px;
 }
 
 .mat-menu-content {
