@@ -14,7 +14,6 @@ import {MatSelectModule} from '@angular/material/select';
 
 import { CommonModule } from '@angular/common';
 
-
 import {ServiceService} from '../../services/service.service';
 import {SettingsPopupComponent} from '../settings-popup/settings-popup.component';
 import { DatePipe } from '@angular/common';
@@ -299,6 +298,10 @@ export class Page1Component implements OnInit, OnDestroy{
   updateQuantity(orderId: number) {
     let order = this.dataSource.data.find((x:any) => x.orderId === orderId);
     order.quantity += 1;
+    if (order.quantity === order.plannedQuantity) {
+      order.statusId = 2;
+      order.statusName = 'Closed';
+    }
   }
 
   addOrder() {
@@ -325,7 +328,7 @@ export class Page1Component implements OnInit, OnDestroy{
     const dialogRef = this.dialog.open(AddOrderComponent, dialogConfig);
   
     dialogRef.afterClosed().subscribe(data => {
-      console.log('The dialog was closed');
+      console.log('Dialog AddOrder was closed');
       if (data) {
         // Add new order if data is present
         data = data.data;
@@ -379,7 +382,7 @@ export class Page1Component implements OnInit, OnDestroy{
     const dialogRef = this.dialog.open(SettingsPopupComponent, dialogConfig);
   
     dialogRef.afterClosed().subscribe(data => {
-      console.log('The dialog was closed');
+      console.log('Dialog managePlanning was closed');
       if (data) {
         // Update element with new values if data is present
         data.newDate = this.datePipe.transform(new Date(data.newDate), 'yyyy-MM-dd');
@@ -391,7 +394,7 @@ export class Page1Component implements OnInit, OnDestroy{
 
         this.service.updateOrderData(element).subscribe({
           next: (res:any) => {
-          console.log("--> Line updated",res);
+          console.log("-->Planning updated",res);
         },
         error: (err:any) => {
           console.log(err);
@@ -420,7 +423,7 @@ export class Page1Component implements OnInit, OnDestroy{
     const dialogRef = this.dialog.open(InfoPopupComponent, dialogConfig);
   
     dialogRef.afterClosed().subscribe(data => {
-      console.log('The dialog was closed');
+      console.log('Dialog Info was closed');
     });
   }
 
@@ -438,7 +441,7 @@ export class Page1Component implements OnInit, OnDestroy{
     const dialogRef = this.dialog.open(DeleteOrderComponent, dialogConfig);
   
     dialogRef.afterClosed().subscribe(data => {
-      console.log('The dialog was closed');
+      console.log('Dialog deleteOrder was closed');
       if (data) {
         this.service.deleteOrder(element.orderId).subscribe({
           next: (res:any) => {
@@ -471,7 +474,7 @@ export class Page1Component implements OnInit, OnDestroy{
         element.statusId = 1; //Open
         element.statusName = 'Open';
         element.startingDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm');
-        console.log('start process', element);
+        console.log('start process', res.orderName);
 
         this.service.updateOrderData(element).subscribe({
           next: (res:any) => {

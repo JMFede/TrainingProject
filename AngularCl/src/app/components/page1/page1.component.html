@@ -187,7 +187,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
         Order
       </th>
-      <td mat-cell *matCellDef="let element" style="text-align: center;">
+      <td mat-cell *matCellDef="let element">
         <span [style.color]="element.name ? 'initial' : 'firebrick'">
           {{ element.name || 'UNDEFINED' }}
         </span>
@@ -199,7 +199,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by typeName">
         Product
       </th>
-      <td mat-cell *matCellDef="let element" style="text-align: center;">
+      <td mat-cell *matCellDef="let element">
         <span [style.color]="element.typeName ? 'initial' : 'firebrick'">
           {{ element.typeName || 'UNDEFINED' }}
         </span>
@@ -211,7 +211,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by lineName">
         Line
       </th>
-      <td mat-cell *matCellDef="let element" style="text-align: center;">
+      <td mat-cell *matCellDef="let element">
         <span [style.color]="element.lineName ? 'initial' : 'firebrick'">
           {{ element.lineName || 'UNDEFINED' }}
         </span>
@@ -223,7 +223,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by batch">
         Batch
       </th>
-      <td mat-cell *matCellDef="let element" style="text-align: center;">
+      <td mat-cell *matCellDef="let element">
         <span [style.color]="element.batch ? 'initial' : 'firebrick'">
           {{ element.batch || 'UNDEFINED' }}
         </span>
@@ -259,7 +259,7 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by plannedDate">
       Planned Date
     </th>
-    <td mat-cell *matCellDef="let element" style="text-align: center;">
+    <td mat-cell *matCellDef="let element">
       <span [style.color]="element.plannedDate ? 'initial' : 'firebrick'">
         {{ element.plannedDate || 'UNDEFINED' }}
       </span>
@@ -271,7 +271,7 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by userName">
       Owner
     </th>
-    <td mat-cell *matCellDef="let element" style="text-align: center;">
+    <td mat-cell *matCellDef="let element">
       <span [style.color]="element.userName ? 'initial' : 'firebrick'">
         {{ element.userName || 'UNDEFINED' }}
       </span>
@@ -283,7 +283,7 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by wbs">
       WBS
     </th>
-    <td mat-cell *matCellDef="let element" style="text-align: center;">
+    <td mat-cell *matCellDef="let element">
       <span [style.color]="element.wbs ? 'initial' : 'firebrick'">
         {{ element.wbs || 'UNDEFINED' }}
       </span>  
@@ -295,7 +295,7 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by startingDate">
       Start Date
     </th>
-    <td mat-cell *matCellDef="let element" style="text-align: center;">
+    <td mat-cell *matCellDef="let element">
       <span [style.color]="element.startingDate ? 'initial' : 'firebrick'" *ngIf="element.statusId !== 2 && element.statusId !== 3">
         {{ element.startingDate || 'UNDEFINED' }}
       </span>
@@ -307,7 +307,7 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by statusName">
       Status
     </th>
-    <td mat-cell *matCellDef="let element" style="text-align: center;">
+    <td mat-cell *matCellDef="let element">
       <span [style.color]="element.statusName ? 'initial' : 'firebrick'">
         {{ element.statusName || 'UNDEFINED' }}
       </span>

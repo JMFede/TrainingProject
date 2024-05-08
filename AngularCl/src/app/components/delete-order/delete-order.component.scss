@@ -1,14 +1,7 @@
 /* Style for the entire popup container */
 .popup-container {
-    top: 20%;
-    left: 50%;
-    transform: translateX(+22%);
-    width: 300px;
-    background-color: white;
-    padding: 20px;
+    background-color: firebrick;
     text-align: center;
-    border-radius: 10px;
-    margin-bottom: 20px;;
 }
 
 /* Style for the header section (title and image) */
@@ -20,17 +13,17 @@
 .title {
     font-size: 24px;
     color: white;
-    background-color: #ED1C24;
+    background-color: firebrick;
     line-height: 1.2; /* Adjust line height for better spacing */
 }
 
+
 .warning-icon {
-    color: #ED1C24;
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
-    margin-top: 20px; /* Slightly reduce the top margin */
-    margin-bottom: 20px; /* Slightly reduce the bottom margin */
+    font-size: 60px;
+    color: white;
+    width: 80px;
+    height: 80px;
+    margin-top: 20px;
 }
 
 /* Style for the content section (message text and buttons) */
@@ -40,9 +33,15 @@
 
 .message-text {
     font-size: 16px;
-    color: #333; /* Darker text color for better readability */
+    color: black; /* Darker text color for better readability */
+    padding: 40px; /* Add padding for better spacing */
+    text-align: center;
 }
 
 .button-container {
     margin-top: 20px;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: 20px !important;
 }

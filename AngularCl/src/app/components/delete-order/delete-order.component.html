@@ -1,10 +1,10 @@
-<h2 mat-dialog-title class="title">Deleting {{data.orderName}}</h2>
 <div class="popup-container">
-    <img src="https://static.vecteezy.com/system/resources/previews/012/042/292/original/warning-sign-icon-transparent-background-free-png.png" alt="Warning Icon" class="warning-icon">
+    <mat-icon class="warning-icon">cancel</mat-icon> 
+</div>
+<div>
     <div class="message-text">Are you sure you want to delete {{data.orderName}}?</div>
 </div>
 <mat-dialog-actions style="justify-content: center;">
-    <button mat-flat-button style="background-color:#ED1C24; color:white" (click)="onCloseClick()">Cancel</button>
-    <button mat-flat-button style="color: #ED1C24;" (click)="onConfirmClick()">Yes</button>
+    <button mat-flat-button (click)="onCloseClick()">Cancel</button>
+    <button mat-flat-button style="background-color:firebrick; color:white" (click)="onConfirmClick()">Delete</button>
 </mat-dialog-actions>
-  
