@@ -23,12 +23,11 @@ kind: Service
 metadata:
   name: angular-frontend
 spec:
+  type: LoadBalancer
   selector:
     app: angular-frontend
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 4200
+    port: 4200
 ---
 apiVersion: apps/v1
 kind: Deployment
