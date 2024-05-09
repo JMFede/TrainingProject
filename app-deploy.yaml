@@ -23,11 +23,11 @@ kind: Service
 metadata:
   name: angular-frontend
 spec:
-  type: NodePort
+  type: LoadBalancer  # Expose the service outside the cluster
   ports:
-    - port: 4200  # Port exposed by the service
+    - port: 80  # Port exposed by the service
+      protocol: TCP
       targetPort: 4200  # Port your application listens on
-      nodePort: 30000  # Optional: specific NodePort, or let Kubernetes allocate one
   selector:
     app: angular-frontend  # Label selector to match pods
 ---
@@ -83,6 +83,9 @@ spec:
         image: jmfede/sql-db:v1
         ports:
         - containerPort: 1433
+        env:
+        - name: ACCEPT_EULA
+          value: "Y"
 ---
 apiVersion: v1
 kind: Service
