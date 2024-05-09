@@ -6,13 +6,14 @@
             <mat-label>Username</mat-label>
             <input matInput type="text" name="username" required ngModel>
         </mat-form-field>
-        <button mat-icon-button class="login-button" type="submit" [disabled]="!loginForm.valid">
-            <mat-icon>send</mat-icon>
-        </button>
     </form>
+    <button mat-flat-button class="login-button" type="submit" [disabled]="!loginForm.valid" (click)="onSubmit(loginForm)">
+        LOGIN
+    </button>
     <div *ngIf="!isRegistered" class="error">
         <p style="color:red">Account not registered, please Sign up</p>
     </div>
-    <button mat-button style="margin-top: 10px; color: aliceblue" (click)="toRegister();">Sign Up</button>
+    <div style="color: white;">Not registered? <button mat-flat-button style="background-color:#123a74; color: white; text-decoration: underline;" (click)="toRegister();">Sign Up</button>
+    </div>
 </div>
   

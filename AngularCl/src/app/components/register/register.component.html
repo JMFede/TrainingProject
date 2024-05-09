@@ -6,18 +6,18 @@
             <mat-label>Username</mat-label>
             <input matInput type="text" name="username" required ngModel>
         </mat-form-field>
-        <button mat-icon-button class="login-button" type="submit" [disabled]="!loginForm.valid">
-            <mat-icon>send</mat-icon>
-        </button>
     </form>
+    <button mat-flat-button class="login-button" type="submit" [disabled]="!loginForm.valid" (click)="onSubmit(loginForm)" >
+        SIGN UP
+    </button>
     <div *ngIf="formSubmitted">
         <div *ngIf="!isRegistered" class="error">
-            <p style="color:white">Account correctly registered, please Log in</p>
+            <p style="color:white">Account correctly signed up, please Log in</p>
         </div>
         <div *ngIf="isRegistered" class="error">
-            <p style="color:white">Account already registered, please Log in</p>
+            <p style="color:white">Account already signed up, please Log in</p>
         </div>
     </div>
-    <button mat-button style="margin-top: 10px; color: aliceblue" (click)="toLogin();">Log in</button>
+    <button mat-button style="margin-top: 10px; color: white; text-decoration: underline;" (click)="toLogin();">Log in</button>
 </div>
   

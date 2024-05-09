@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    API_URL: "http://localhost:8080/"//window.location.origin + "/"
+    API_URL: window.location.origin + "/"//"http://localhost:8080/"
 };

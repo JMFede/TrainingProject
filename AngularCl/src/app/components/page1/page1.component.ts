@@ -408,7 +408,7 @@ export class Page1Component implements OnInit, OnDestroy{
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '500px';
-    dialogConfig.height = '200spx';
+    dialogConfig.height = '200px';
   
     // Pass current values of date and line along with variables for new values
     dialogConfig.data = {
