@@ -68,7 +68,6 @@ kind: StatefulSet
 metadata:
   name: database
 spec:
-  serviceName: "database"
   replicas: 1
   selector:
     matchLabels:
