@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: angular-frontend
+  name: frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: angular-frontend
+      app: frontend
   template:
     metadata:
       labels:
-        app: angular-frontend
+        app: frontend
     spec:
       containers:
-      - name: angular-frontend
+      - name: frontend
         image: jmfede/angular-app:v1
         ports:
         - containerPort: 4200
@@ -21,7 +21,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: angular-frontend
+  name: frontend
 spec:
   type: LoadBalancer  # Expose the service outside the cluster
   ports:
@@ -29,24 +29,24 @@ spec:
       protocol: TCP
       targetPort: 4200  # Port your application listens on
   selector:
-    app: angular-frontend  # Label selector to match pods
+    app: frontend  # Label selector to match pods
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dotnet-backend
+  name: backend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dotnet-backend
+      app: backend
   template:
     metadata:
       labels:
-        app: dotnet-backend
+        app: backend
     spec:
       containers:
-      - name: dotnet-backend
+      - name: backend
         image: jmfede/dotnet-api:v1
         ports:
         - containerPort: 8080
@@ -54,32 +54,32 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: dotnet-backend
+  name: backend
 spec:
   selector:
-    app: dotnet-backend
+    app: backend
   ports:
   - protocol: TCP
-    port: 80
+    port: 8080
     targetPort: 8080
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: sql-database
+  name: database
 spec:
-  serviceName: "sql"
+  serviceName: "database"
   replicas: 1
   selector:
     matchLabels:
-      app: sql-database
+      app: database
   template:
     metadata:
       labels:
-        app: sql-database
+        app: database
     spec:
       containers:
-      - name: sql-database
+      - name: database
         image: jmfede/sql-db:v1
         ports:
         - containerPort: 1433
@@ -90,10 +90,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: sql
+  name: database
 spec:
   selector:
-    app: sql-database
+    app: database
   ports:
   - protocol: TCP
     port: 1433
