@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: jmfede/angular-app:v1
+        image: jmfede/angular-app:v4
         ports:
         - containerPort: 4200
 ---
@@ -47,7 +47,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: jmfede/dotnet-api:v1
+        image: jmfede/dotnet-api:v2
         ports:
         - containerPort: 8080
 ---
