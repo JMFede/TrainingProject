@@ -66,19 +66,19 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: database
+  name: sql-database
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: database
+      app: sql-database
   template:
     metadata:
       labels:
-        app: database
+        app: sql-database
     spec:
       containers:
-      - name: database
+      - name: sql-database
         image: jmfede/sql-db:v1
         ports:
         - containerPort: 1433
@@ -89,10 +89,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: database
+  name: sql-database
 spec:
   selector:
-    app: database
+    app: sql-database
   ports:
   - protocol: TCP
     port: 1433
