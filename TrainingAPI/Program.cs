@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 void CheckConnection()
 {
-    const string connectionString = "Server=database,1433;Database=TrainingDatabase;User=sa;Password=yourStrong(!)Password; TrustServerCertificate=True";
+    const string connectionString = "Server=mysql,1433;Database=TrainingDatabase;User=sa;Password=yourStrong(!)Password; TrustServerCertificate=True";
     int retries = 3;
     int delay = 1000; // 1 second
     int maxDelay = 60000; // 1 minute
