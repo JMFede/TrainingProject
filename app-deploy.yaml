@@ -97,6 +97,8 @@ spec:
           env:
             - name: SA_PASSWORD
               value: yourStrong(!)Password
+            - name: ACCEPT_EULA
+              value: "Y"
           ports:
             - containerPort: 1433
           volumeMounts:
