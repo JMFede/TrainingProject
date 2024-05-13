@@ -79,20 +79,20 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mysql
+  name: sql-database
 spec:
-  serviceName: mysql
+  serviceName: sql-database
   replicas: 1
   selector:
     matchLabels:
-      app: mysql
+      app: sql-database
   template:
     metadata:
       labels:
-        app: mysql
+        app: sql-database
     spec:
       containers:
-        - name: mysql
+        - name: sql-database
           image: jmfede/sql-db:v1
           env:
             - name: MYSQL_ROOT_PASSWORD
@@ -110,6 +110,18 @@ spec:
         resources:
           requests:
             storage: 1Gi
+  apiVersion: v1
+    kind: Service
+    metadata:
+      name: mysql
+    spec:
+      selector:
+        app: sql-database
+      ports:
+        - protocol: TCP
+          port: 3306
+          targetPort: 3306
+
 
 
 
