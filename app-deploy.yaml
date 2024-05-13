@@ -66,49 +66,35 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: sql-database
+  name: mssql
 spec:
+  serviceName: mssql
   replicas: 1
   selector:
     matchLabels:
-      app: sql-database
+      app: mssql
   template:
     metadata:
       labels:
-        app: sql-database
+        app: mssql
     spec:
       containers:
-      - name: sql-database
+      - name: mssql
         image: jmfede/sql-db:v1
         ports:
         - containerPort: 1433
         env:
         - name: ACCEPT_EULA
           value: "Y"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: sql-database
-spec:
-  selector:
-    app: sql-database
-  ports:
-  - protocol: TCP
-    port: 1433
-    targetPort: 1433
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: sql-data-pvc
-spec:
-  accessModes:
+volumeClaimTemplates:
+  - metadata:
+    name: mssql
+    spec:
+    accessModes:
     - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: standard
+    resources:
+      requests:
+      storage: 8Gi
 
 
 
