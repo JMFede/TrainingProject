@@ -95,7 +95,7 @@ spec:
         - name: sql-database
           image: jmfede/sql-db:v1
           env:
-            - name: MYSQL_ROOT_PASSWORD
+            - name: SA_PASSWORD
               value: yourStrong(!)Password
           ports:
             - containerPort: 1433
