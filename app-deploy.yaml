@@ -63,38 +63,54 @@ spec:
     port: 8080
     targetPort: 8080
 ---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mssql
+  name: mysql
 spec:
-  serviceName: mssql
+  serviceName: mysql
   replicas: 1
   selector:
     matchLabels:
-      app: mssql
+      app: mysql
   template:
     metadata:
       labels:
-        app: mssql
+        app: mysql
     spec:
       containers:
-      - name: mssql
-        image: jmfede/sql-db:v1
-        ports:
-        - containerPort: 1433
-        env:
-        - name: ACCEPT_EULA
-          value: "Y"
-volumeClaimTemplates:
-  - metadata:
-    name: mssql
-    spec:
-    accessModes:
-    - ReadWriteOnce
-    resources:
-      requests:
-      storage: 8Gi
+        - name: mysql
+          image: jmfede/sql-db:v1
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: yourStrong(!)Password
+          ports:
+            - containerPort: 1433
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+    - metadata:
+        name: mysql-persistent-storage
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
+
 
 
 
