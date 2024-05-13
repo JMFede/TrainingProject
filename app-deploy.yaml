@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: jmfede/angular-app:v4
+        image: jmfede/angular-app:v5
         ports:
         - containerPort: 4200
 ---
