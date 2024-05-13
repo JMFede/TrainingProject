@@ -47,7 +47,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: jmfede/dotnet-api:v3
+        image: jmfede/dotnet-api:v4
         ports:
         - containerPort: 8080
 ---
