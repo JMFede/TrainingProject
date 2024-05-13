@@ -8,7 +8,7 @@ spec:
         paths:
           - path: /
             pathType: Prefix
-            backend:
+            frontend:
               service:
                 name: frontend
                 port:
