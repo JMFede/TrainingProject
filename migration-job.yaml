@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migration-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: migration-container
+        image: jmfede/dotnet-api:v6
+        command: ["dotnet", "ef", "database", "update"]
+        env:
+        - name: DATABASE_CONNECTION_STRING
+          value: "Server=10.0.37.158,1433;Database=TrainingDatabase;User=sa;Password=yourStrong(!)Password; TrustServerCertificate=True"
+      restartPolicy: Never
