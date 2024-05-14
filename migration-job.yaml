@@ -4,10 +4,12 @@ metadata:
   name: migration-job
 spec:
   template:
+    metadata:
+      name: migration-pod
     spec:
       containers:
       - name: migration-container
-        image: jmfede/dotnet-api:v6
+        image: jmfede/dotnet-api:v7
         command: ["dotnet", "ef", "database", "update"]
         env:
         - name: DATABASE_CONNECTION_STRING
