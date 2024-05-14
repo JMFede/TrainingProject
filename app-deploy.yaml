@@ -27,7 +27,7 @@ spec:
   ports: 
     - port: 80  # Port exposed by the service
       protocol: TCP
-      targetPort: 4200  # Port your application listens on
+      targetPort: 4200  # Port the application listens on
   selector:
     app: frontend  # Label selector to match pods
 ---
@@ -47,7 +47,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: jmfede/dotnet-api:v5
+        image: jmfede/dotnet-api:v6
         ports:
         - containerPort: 8080
 ---
