@@ -53,6 +53,16 @@ builder.Services.AddDbContextFactory<TrainingDatabaseContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var serviceProvider = builder.Services.BuildServiceProvider();
+using (var scope = serviceProvider.CreateScope())
+{
+    var dbContextFactory = scope.ServiceProvider.GetRequiredService<IDbContextFactory<TrainingDatabaseContext>>();
+    using (var dbContext = dbContextFactory.CreateDbContext())
+    {
+        dbContext.Database.Migrate();
+    }
+}
+
 builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
 builder.Services.AddSingleton<PlantService>();
 builder.Services.AddHostedService<PlantService>(sp => sp.GetRequiredService<PlantService>());
