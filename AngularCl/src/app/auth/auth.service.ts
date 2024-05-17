@@ -21,17 +21,21 @@ export class AuthService {
     this.isLoggedIn();
     console.log("setUsername", username, "log", this.isLog);
   }
+
   getUsername() {
     return sessionStorage.getItem(this.USERNAME_KEY);
   }
+
   clearUsername() {
     sessionStorage.removeItem(this.USERNAME_KEY);
     this.isLoggedIn();
   }
+
   isLoggedIn(){
     this.isLog = (this.getUsername !== null);
     return this.isLog;
   }
+
   redirect(){
     if (this.isLog) {
       console.log("redirect", this.isLog);
@@ -41,6 +45,11 @@ export class AuthService {
       console.log("redirect", this.isLog);
       this.router.navigate(['login']);
     }
+  }
+
+  logOut(){
+    this.clearUsername();
+    this.router.navigate(['login']);
   }
 
   isRegistered(username: string): Observable<boolean> {

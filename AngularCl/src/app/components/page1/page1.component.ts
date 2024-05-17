@@ -487,8 +487,17 @@ export class Page1Component implements OnInit, OnDestroy{
             error: (err:any) => {
               console.log(err);
             }
-            })
+          })
+          this.service.getUsersData().subscribe({
+            next: (res:any) => {
+            this.userData = res;
+            this.userData = this.userData.filter((x:any) => x != null);
             },
+            error: (err:any) => {
+              console.log(err);
+            }
+          })
+          },
           error: (err:any) => {
             console.log(err);
           }
