@@ -12,7 +12,7 @@ spec:
               service:
                 name: frontend
                 port:
-                  number: 80
+                  number: 4200
           - path: /api
             pathType: Prefix
             backend:
