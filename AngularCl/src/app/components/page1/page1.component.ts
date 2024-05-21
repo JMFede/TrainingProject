@@ -318,12 +318,13 @@ export class Page1Component implements OnInit, OnDestroy{
       line: '',
       lines: this.lineData,
       batch: '',
-      plannedQuantity: 0,
+      plannedQuantity: null,
       plannedDate: '',
       user: '',
       users: this.userData,
       wbs: '',
-      isLineAvailable: this.isLineAvailable.bind(this)
+      isLineAvailable: this.isLineAvailable.bind(this),
+      isOrderPresent: this.isOrderPresent.bind(this)
     };  
     const dialogRef = this.dialog.open(AddOrderComponent, dialogConfig);
   
@@ -369,6 +370,7 @@ export class Page1Component implements OnInit, OnDestroy{
   
     // Pass current values of date and line along with variables for new values
     dialogConfig.data = {
+      id: element.orderId,
       currentDate: element.plannedDate,
       currentLine: element.lineName,
       newLine: { lineId: 0, lineName: '' },
@@ -431,7 +433,7 @@ export class Page1Component implements OnInit, OnDestroy{
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '500px';
-    dialogConfig.height = '200spx';
+    dialogConfig.height = '250px';
   
     // Pass current values of date and line along with variables for new values
     dialogConfig.data = {
@@ -553,14 +555,23 @@ export class Page1Component implements OnInit, OnDestroy{
     }
     
   }
-  isLineAvailable(line: string, date: string): boolean {
+  isLineAvailable(line: string, date: string, currentLine: string, currentDate: string, id: number): boolean {
     //search in the database if the line is present, return true if it is
     let isAvailable = true;
-    this.dataSource.data.forEach((element: any) => {
-      if (line=='' || (element.lineName === line && element.plannedDate === this.datePipe.transform(new Date(date), 'yyyy-MM-dd'))){
-        isAvailable = false;
-      }
-    });
+    if (line === ''){
+      line = currentLine;
+    }
+    if (date === ''){
+      date = currentDate;
+    }
+    if (date !== '-'){
+      this.dataSource.data.forEach((element: any) => {
+        if ((element.lineName === line && element.plannedDate === this.datePipe.transform(new Date(date), 'yyyy-MM-dd') && element.orderId !== id)){
+          isAvailable = false;
+        }
+      });
+    }
+    
     return isAvailable;
   }
   getRowColor(element: any): string {
@@ -572,6 +583,17 @@ export class Page1Component implements OnInit, OnDestroy{
       return 'lightgrey';
     }
     return 'initial';
+  }
+  isOrderPresent(orderName: string): boolean {
+    //search in the database if the line is present, return true if it is
+    let isPresent = false;
+    this.dataSource.data.forEach((element: any) => {
+      if (element.name === orderName){
+        isPresent = true;
+      }
+    });
+    
+    return isPresent;
   }
 
 }

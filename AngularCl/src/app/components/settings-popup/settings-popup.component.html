@@ -20,15 +20,16 @@
     <mat-select class="input-with-icon" [(ngModel)]="data.newLine" #lineInput [disabled]="!data.newDate">
       <mat-option *ngFor="let option of data.lines" [value]="option">{{ option.lineName }}</mat-option>
     </mat-select>
-    <mat-icon *ngIf="data.isLineAvailable(data.newLine.lineName, data.newDate)" class="check-icon" style="align-self: center;">check_circle</mat-icon>
-    <mat-icon *ngIf="!data.isLineAvailable(data.newLine.lineName, data.newDate)" class="cancel-icon" style="align-self: center;">cancel</mat-icon>
+    <mat-icon *ngIf="data.isLineAvailable(data.newLine.lineName, data.newDate, data.currentLine, data.currentDate, data.id)" class="check-icon" style="align-self: center;">check_circle</mat-icon>
+    <mat-icon *ngIf="!data.isLineAvailable(data.newLine.lineName, data.newDate, data.currentLine, data.currentDate, data.id)" class="cancel-icon" style="align-self: center;">cancel</mat-icon>
   </mat-form-field>
+  <mat-error style="text-align: center;" *ngIf="data.newLine && data.newDate && !data.isLineAvailable(data.newLine.lineName, data.newDate, data.currentLine, data.currentDate, data.id)">The selected line is not available on this date.</mat-error>
 </mat-dialog-content>
 <mat-dialog-actions style="justify-content: center;">
   <button mat-flat-button (click)="onCancelClick()">Cancel</button>
   <button mat-flat-button color="#123a74" 
-          [style.background-color]="!data.isLineAvailable(data.newLine.lineName, data.newDate) ? 'whitesmoke' : '#123a74'"
+          [style.background-color]="!data.isLineAvailable(data.newLine.lineName, data.newDate, data.currentLine, data.currentDate, data.id) ? 'whitesmoke' : '#123a74'"
           style = "color: white"
-          [disabled]="!data.isLineAvailable(data.newLine.lineName, data.newDate)" 
+          [disabled]="!data.isLineAvailable(data.newLine.lineName, data.newDate, data.currentLine, data.currentDate, data.id)" 
           (click)="onOkClick()">Ok</button>
 </mat-dialog-actions>

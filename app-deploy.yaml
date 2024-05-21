@@ -1,66 +1,67 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: training-web-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: training-web-app
   template:
     metadata:
       labels:
-        app: frontend
+        app: training-web-app
     spec:
       containers:
-      - name: frontend
-        image: jmfede/angular-app:v11
+      - name: training-web-app
+        image: jmfede/web-app:v1
         ports:
-        - containerPort: 4200
+        - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: training-web-app
 spec:
+  ports:
+    - name: "11003"
+      port: 11003
+      targetPort: 80
   type: LoadBalancer  
-    - port: 4200  
-      protocol: TCP
-      targetPort: 4200  
   selector:
-    app: frontend  
+    app: training-web-app  
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: training-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: training-api
   template:
     metadata:
       labels:
-        app: backend
+        app: training-api
     spec:
       containers:
-      - name: backend
-        image: jmfede/dotnet-api:v12
+      - name: training-api
+        image: jmfede/training-api:v1
         ports:
-        - containerPort: 8080
+        - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend
+  name: training-api
 spec:
-  selector:
-    app: backend
   ports:
-  - protocol: TCP
-    port: 8080
-    targetPort: 8080
+  - name: "11011"
+    port: 11001
+    targetPort: 80
+  selector:
+    app: training-api
 ---
 
 apiVersion: v1
