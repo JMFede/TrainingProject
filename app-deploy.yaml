@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: training-web-app
-        image: jmfede/web-app:v4
+        image: jmfede/web-app:v6
         ports:
         - containerPort: 80
 ---
